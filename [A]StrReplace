@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string a, b, c;
+    while (cin >> a) {
+        if (a == "*") break;
+        cin >> b >> c;
+        
+        size_t i = c.find(a);
+    	while (i != string::npos) { // 直到字符串結尾 
+        	c.replace(i, a.length(), b);
+        	i = c.find(a);
+    	}
+        cout << c << endl;
+    }
+
+    return 0;
+}

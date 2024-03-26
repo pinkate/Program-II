@@ -1,0 +1,106 @@
+//1: inline Function
+#include <iostream>
+using namespace std;
+inline double Cube( const double side){
+    return (side * side *side);
+}
+
+int main()
+{
+    double side;
+    cin >> side;
+    cout << Cube(side);
+    return 0;
+}
+
+//2: Reference as Aliases within Function
+#include <iostream>
+using namespace std;
+int main()
+{
+    int x = 3;
+    int &y = x;
+    cout << y+3; //6
+    return 0;
+}
+
+//3: Default Arguments
+#include <iostream>
+using namespace std;
+int boxVolumn(int height=1, int width=1, int length=1){
+    return height * width * length;
+}
+
+int main()
+{
+    cout << boxVolumn(10) << //(10, 1, 1)
+        "\n" << boxVolumn(10, 5) <<  //(10, 5, 1)
+        "\n" << boxVolumn(10, 5, 2); //(10, 5, 2)
+    return 0;
+}
+
+//4: Unary Scope Resolution Operator(::)
+#include <iostream>
+using namespace std;
+int number=7;
+
+int main()
+{
+    int number=3;
+    cout << "Local:" << number << " Global: " << ::number;
+    return 0;
+}
+
+//5: Function Template
+//main.c
+#include <iostream>
+#include "maximum.h"
+using namespace std;
+
+int main()
+{
+    int a=1, b=2, c=3;
+    double d=1.0, e=2.0, f=3.0;
+    cout << "int: " << maximum(a, b, c)
+        << " double: " << maximum(d, e, f);
+    return 0;
+}
+
+//maximum.h
+#ifndef MAXIMUM_H_INCLUDED
+#define MAXIMUM_H_INCLUDED
+
+template <class T>
+
+T maximum(T val1, T val2, T val3){
+    T maximum = val1;
+    if(val2 > maximum){
+        maximum = val2;
+    }
+    if(val3 > maximum){
+        maximum = val3;
+    }
+    return maximum;
+}
+
+#endif // MAXIMUM_H_INCLUDED
+
+//6: Using Class Template vector
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector <int> integer1(7);
+    vector <int> integer2(10);
+    cout << "Size of integer1: " << integer1.size() << endl;
+    if(integer1 != integer2) cout << "integer1 != integer2" << endl;
+    else cout << "integer1 == integer2" << endl;
+    vector <int> integer3(integer1);
+    for(size_t i=0; i<integer3.size(); ++i){
+        cout << integer3[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
